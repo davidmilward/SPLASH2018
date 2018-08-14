@@ -1,0 +1,120 @@
+ 
+\documentclass[conference]{IEEEtran}
+ 
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+ 
+  
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Healthcare Data Management using MDE\\ for DSLDI-SPLASH 2018}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{David Milward}
+\IEEEauthorblockA{Department of Computer Science\\
+Oxford University\\
+Oxford, UK\\
+Email: https://www.cs.ox.ac.uk/people/david.milward/}
+\and
+\IEEEauthorblockN{Homer Simpson}
+\IEEEauthorblockA{Twentieth Century Fox\\
+Springfield, USA\\
+Email: homer@thesimpsons.com}
+\and
+\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
+\IEEEauthorblockA{Starfleet Academy\\
+San Francisco, California 96678--2391\\
+Telephone: (800) 555--1212\\
+Fax: (888) 555--1212}}
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+ An adequate account of data semantics and provenance is important in data management and analysis: to facilitate re-use and help ensure compliance.  This importance increases with the value and the complexity of the data.  This paper describes continuing work carried out for a number of UK Healthcare organizations, using the DSL, metamodel and ideas described in \cite{2015Metadata}  It introduces also a toolset, built around the notion of a metadata catalogue, to enable the effective deployment of the language in large organisations and major programmes.  The paper presents a language definition, using the widely-used Eclipse Modeling Framework, together with a design for the catalogue.  It reports on the experience of deploying the language and toolset in two different application domains..
+\end{abstract}
+
+% no keywords
+
+
+
+
+
+\section{Introduction}
+A Metadata Registry is a toolkit which allows definitions of datasets to be stored, curated and managed. The definitions are metadata, and could be the decription of a field in a relational database, or an element in an XML file. By storing the definitions of every data element amd all its relations in a metadata registry the map of all the dataflows in an organization can be created and managed. It is similar to an ESB. an in fact most ESB's have some kind of registy internally to hold metadata. Metadata Registries, such as those conforming to the ISO11179 standard, can help to solve the problem of data incompatibility, provenance and compliance, as is indicated in studies such as those conducted by Ulrich et al. \cite{MDRHL7} . In this study a hybrid architecture consisting of an ISO 11179-3 conformant MDR server application for interactively annotating and mediating data elements and the translation of these data elements into FHIR resources was used to manage data for the North German Tumor Bank of Colorectal Cancer. 
+
+
+In this work we have taken the core elements in ISO11179, and built an Ecore model which attempts to overcome these problems, and in doing so we have defined a simple language for metadata management.
+
+\section{MDML}
+
+ 
+
+An example of a \emph{Data Language (say mi\_1)} at this M1 level of abstraction would be the UK NHS's Cancer Outcomes and Services Dataset (COSD) which is a dataset specifying the terminology to use when writing reports on cancer. At present the dataset is defined by both an excel file and an XSD.  Within the NHS there are plenty of other similar datasets, which are used in reports, in databases or by applications.  Whilst MML will not be a fit for every dataset, it is aimed at covering most structural features that occur in datasets, it can be viewed as a subset of Ecore tailored to the domain of data management.
+
+In defining MML we take the notion of a \emph{dataElement} as the core entity in the language, historically it was intended to correspond to a \emph{data element} in ISO11179 and with an \emph{element} in the UML meta-model. It is an atomic data item, capturing one single element that cannot be sub-divided.
+
+The word or stem \emph{abstract} is used in several different ways in this discussion, and the following brief discussion highlights the different usages.  
+
+Firstly we can have an abstract entity which is the implementation of an EClass at the M3 level, that is to say a representation of in our language of an EClass which cannot be implemented at the M2 level. It can be \emph{sub-typed} by another EClass at the M2 level and this \emph{sub-class} can be implemented. We use this mechanism to specify both AbstractItem and DataItem as \emph{abstract} entities in our language, however we are not defining an \emph{abstraction} mechanism for MML per se. Later on we will define an inheritance or rather a simple sub-typeing mechanism which can be used for \emph{templating} at the M1 model level. 
+
+\section{Case Study : Validation}
+
+
+Description of Sentinel which is a framework which gets the model details over a web conncetion, pulls back the data element description including any type-based restrictions, and validates the datasets.
+It is also able to run any rules connected to that model - 
+
+
+\section{conclusion}
+
+ 
+
+
+\begin{thebibliography}{1}
+
+\bibitem{2015Metadata}
+Jim Davies, Jeremy Gibbons, Adam Milward, David Milward,
+Seyyed Shah, Monika Solanki, and James Welch \emph{Domain Specific Modelling for Clinical Research},  \relax SPLASH Workshop on Domain−Specific Modelling. October, 2015.
+  
+
+\end{thebibliography}
+
+
+
+
+% that's all folks
+\end{document}
+
+
